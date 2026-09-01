@@ -1,0 +1,124 @@
+/**
+ * =========================================================================
+ * SR-ONE CONSULTANCY — CONTACT FORM BACKEND (Google Apps Script)
+ * =========================================================================
+ * WHAT THIS SCRIPT DOES
+ * 1. Receives a POST request from the website's contact form (script.js)
+ * 2. Validates that required fields are present
+ * 3. Appends a new row to a Google Sheet ("Leads" tab), never overwriting
+ *    previous rows
+ * 4. Sends an email notification to the configured address
+ * 5. Returns a JSON success or error response
+ * ========================================================================= */
+
+// =============================
+// CONFIGURATION
+// =============================
+const CONFIG = {
+  SHEET_ID: "1GLDeRiUg7G-BxXsGrAOWr6F2wS-FjM8yNSsNxuBdUB",
+  SHEET_NAME: "Leads",
+  NOTIFICATION_EMAIL: "sharvanpandey81@gmail.com",
+};
+
+function doPost(e) {
+  try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return jsonResponse({ status: "error", message: "No data received." });
+    }
+
+    const data = JSON.parse(e.postData.contents);
+
+    const requiredFields = ["firstName", "lastName", "email", "query"];
+    for (const field of requiredFields) {
+      if (!data[field] || String(data[field]).trim() === "") {
+        return jsonResponse({
+          status: "error",
+          message: `Missing required field: ${field}`,
+        });
+      }
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(data.email)) {
+      return jsonResponse({ status: "error", message: "Invalid email address." });
+    }
+
+    appendToSheet(data);
+    sendNotificationEmail(data);
+
+    return jsonResponse({ status: "success", message: "Enquiry received." });
+  } catch (err) {
+    console.error("SR-ONE contact form error:", err);
+    return jsonResponse({
+      status: "error",
+      message: "Server error while processing the enquiry.",
+    });
+  }
+}
+
+function appendToSheet(data) {
+  const sheet = getLeadsSheet();
+
+  sheet.appendRow([
+    new Date(),
+    data.firstName || "",
+    data.lastName || "",
+    data.email || "",
+    data.mobile || "",
+    data.company || "",
+    data.services || "",
+    data.query || "",
+    data.consent || "",
+  ]);
+}
+
+function getLeadsSheet() {
+  const ss = SpreadsheetApp.openById(CONFIG.SHEET_ID);
+  let sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+
+  if (!sheet) {
+    sheet = ss.insertSheet(CONFIG.SHEET_NAME);
+  }
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      "Timestamp",
+      "First Name",
+      "Last Name",
+      "Email",
+      "Mobile",
+      "Company",
+      "Services",
+      "Query",
+      "Consent",
+    ]);
+  }
+
+  return sheet;
+}
+
+function sendNotificationEmail(data) {
+  const subject = `New SR-ONE enquiry — ${data.firstName} ${data.lastName}`;
+
+  const body = [
+    "A new enquiry was submitted on the SR-ONE Consultancy website.",
+    "",
+    `Name: ${data.firstName} ${data.lastName}`,
+    `Email: ${data.email}`,
+    `Mobile: ${data.mobile || "(not provided)"}`,
+    `Company: ${data.company || "(not provided)"}`,
+    `Services interested in: ${data.services || "(none selected)"}`,
+    `Consent to be contacted: ${data.consent}`,
+    "",
+    "Requirement:",
+    data.query,
+  ].join("\n");
+
+  MailApp.sendEmail(CONFIG.NOTIFICATION_EMAIL, subject, body);
+}
+
+function jsonResponse(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(
+    ContentService.MimeType.JSON
+  );
+}
