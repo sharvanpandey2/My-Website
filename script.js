@@ -13,7 +13,7 @@ const CONFIG = {
 
   // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE.
   // See /google-apps-script/Code.gs and the README for full setup steps.
-  googleScriptUrl: "PASTE_GOOGLE_SCRIPT_URL_HERE",
+  googleScriptUrl: "https://script.google.com/macros/s/AKfycby0tOztxhoJY7dehSwgyyPnvn6iW0rcvD-aPgOl6UCQ_WPn0tOJD-peYKJ-lk3jvRHo/exec",
 
   // EDIT SOCIAL LINKS HERE — used by the footer icon links.
   socialLinks: {
