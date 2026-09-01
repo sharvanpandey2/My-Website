@@ -1,0 +1,659 @@
+/* =========================================================================
+   SR-ONE CONSULTANCY — STYLESHEET (v3: distinctive dark hero, motion,
+   angled dividers, hexagon accents, tilt-ready cards)
+   =========================================================================
+   SECTION INDEX (search these headers to jump around):
+   1.  VARIABLES
+   2.  RESET & BASE / GRAIN OVERLAY
+   3.  TYPOGRAPHY
+   4.  LAYOUT UTILITIES / BUTTONS
+   5.  NAVBAR
+   6.  HERO (dark, glowing) + ANGLED DIVIDER + MARQUEE TRUST STRIP
+   7.  SERVICES (hexagon icons, color-coded, expandable accordion cards)
+   8.  APPROACH (tabbed: Why SR-ONE / How We Work)
+   9.  PROOF (tabbed: Results / Testimonials)
+   10. ABOUT + INDUSTRY CHIPS
+   11. INSIGHTS
+   12. CONTACT
+   13. FOOTER
+   14. SCROLL REVEAL / ANIMATIONS
+   15. RESPONSIVE
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. VARIABLES — edit brand colors here
+------------------------------------------------------------------------- */
+:root {
+  --primary: #0B1B2B;
+  --primary-light: #14293F;
+  --secondary: #1F7A6C;
+  --secondary-light: #2C9C89;
+  --accent: #E8A33D;
+  --accent-dark: #C9832A;
+  --wine: #8C3A4C;
+  --wine-dark: #732E3D;
+  --bg: #F7F6F3;
+  --bg-alt: #EFEDE7;
+  --surface: #FFFFFF;
+  --text: #1C1F24;
+  --text-muted: #5B6472;
+  --border: #E1DED6;
+  --success: #1F7A6C;
+  --error: #B4432E;
+
+  --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+
+  --max-width: 1180px;
+  --section-pad: 4.5rem;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 2px 10px rgba(11, 27, 43, 0.06);
+  --shadow-md: 0 14px 34px rgba(11, 27, 43, 0.12);
+  --shadow-glow: 0 18px 44px rgba(232, 163, 61, 0.16), 0 8px 20px rgba(11, 27, 43, 0.14);
+  --transition: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 480ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* -------------------------------------------------------------------------
+   2. RESET & BASE
+------------------------------------------------------------------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+input, textarea, select { font-family: inherit; font-size: 1rem; }
+:focus-visible { outline: 3px solid var(--secondary); outline-offset: 2px; }
+
+::selection { background: var(--accent); color: var(--primary); }
+
+/* Site-wide film-grain texture — a fixed, ultra-subtle noise layer that
+   keeps flat color fields (especially the dark hero) from looking sterile.
+   Pure CSS, no image request. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* -------------------------------------------------------------------------
+   3. TYPOGRAPHY
+------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--primary);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 2.6vw, 2.15rem); }
+h3 { font-size: 1.12rem; }
+
+p { color: var(--text-muted); max-width: 62ch; }
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--secondary);
+  margin-bottom: 0.6rem;
+}
+
+.section-head { max-width: 620px; margin-bottom: 2rem; }
+.section-head p { margin-top: 0.6rem; font-size: 1rem; }
+.section-head.centered { margin-left: auto; margin-right: auto; text-align: center; }
+
+/* -------------------------------------------------------------------------
+   4. LAYOUT UTILITIES / BUTTONS
+------------------------------------------------------------------------- */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.75rem; }
+
+section { padding: var(--section-pad) 0; position: relative; }
+.section-alt { background: var(--bg-alt); }
+.section-tight { padding-top: 2.2rem; padding-bottom: 2.2rem; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+  white-space: nowrap;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--secondary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--secondary); color: var(--secondary); transform: translateY(-2px); }
+.btn-block { width: 100%; justify-content: center; }
+.btn[disabled] { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: rgba(31, 122, 108, 0.1);
+  color: var(--secondary);
+}
+
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+  display: none;
+}
+.btn.loading .spinner { display: inline-block; }
+.btn.loading .btn-text { opacity: 0.7; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Chevron / plus toggle icon shared by accordions and tabs */
+.toggle-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+.toggle-icon::before, .toggle-icon::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.toggle-icon::before { width: 100%; height: 2px; top: 50%; left: 0; transform: translateY(-50%); }
+.toggle-icon::after { width: 2px; height: 100%; left: 50%; top: 0; transform: translateX(-50%); }
+.is-open .toggle-icon::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+
+/* -------------------------------------------------------------------------
+   5. NAVBAR
+------------------------------------------------------------------------- */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1060;
+  padding: 1.2rem 0;
+  transition: padding var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.navbar.scrolled {
+  padding: 0.75rem 0;
+  background: rgba(247, 246, 243, 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.nav-logo { position: relative; display: inline-block; width: 148px; height: 34px; flex-shrink: 0; }
+.nav-logo img { height: 34px; width: 148px; max-width: none; position: absolute; top: 0; left: 0; transition: opacity var(--transition); }
+.nav-logo .logo-dark { opacity: 1; }   /* light-on-dark wordmark, shown over the dark hero */
+.nav-logo .logo-light { opacity: 0; } /* navy wordmark, shown once the bar turns light */
+.navbar.scrolled .nav-logo .logo-dark { opacity: 0; }
+.navbar.scrolled .nav-logo .logo-light { opacity: 1; }
+
+.nav-links { display: flex; align-items: center; gap: 1.9rem; }
+.nav-links a {
+  font-size: 0.93rem; font-weight: 500; color: rgba(255, 255, 255, 0.88);
+  position: relative; padding: 0.3rem 0; transition: color var(--transition);
+}
+.navbar.scrolled .nav-links a { color: var(--primary); }
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px;
+  background: var(--accent); transition: width var(--transition);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+.navbar.scrolled .nav-links a:hover, .navbar.scrolled .nav-links a.active { color: var(--secondary); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
+.nav-actions .btn-outline { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+.navbar.scrolled .nav-actions .btn-outline { border-color: var(--border); color: var(--primary); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 0.4rem; z-index: 1100; }
+.nav-toggle span { width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: transform var(--transition), opacity var(--transition), background var(--transition); }
+.navbar.scrolled .nav-toggle span, .nav-toggle.open span { background: var(--primary); }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-backdrop { display: none; position: fixed; inset: 0; background: rgba(11,27,43,0.4); z-index: 1040; }
+.nav-backdrop.show { display: block; }
+
+/* -------------------------------------------------------------------------
+   6. HERO — dark, glowing signature moment for the page. Everything else
+   on the site stays disciplined and light; this is where the visual
+   boldness is spent (dot-grid pattern, blurred color blobs, glowing
+   network graphic), then an angled divider hands off into the light
+   trust strip below.
+------------------------------------------------------------------------- */
+.hero {
+  padding-top: 7.5rem;
+  padding-bottom: 5.5rem;
+  overflow: hidden;
+  position: relative;
+  background: var(--primary);
+  color: #fff;
+  isolation: isolate;
+}
+
+/* Dot-grid pattern */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 26px 26px;
+  z-index: 0;
+}
+
+/* Blurred glow blobs — the one place the accent colors get to be loud */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(480px circle at 82% 12%, rgba(232, 163, 61, 0.28), transparent 60%),
+    radial-gradient(520px circle at 8% 88%, rgba(31, 122, 108, 0.32), transparent 60%);
+  z-index: 0;
+}
+
+.hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem; align-items: center; }
+
+.hero-copy .pill { margin-bottom: 1.1rem; background: rgba(232, 163, 61, 0.16); color: var(--accent); }
+.hero-copy h1 { margin-bottom: 1rem; color: #fff; }
+.hero-copy h1 .line { display: block; }
+.hero-copy p { font-size: 1.08rem; margin-bottom: 1.6rem; max-width: 46ch; color: rgba(247, 246, 243, 0.72); }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Magnetic-feeling primary button: a soft glow that blooms on hover */
+.hero .btn-primary { background: var(--accent); color: var(--primary); box-shadow: 0 0 0 rgba(232,163,61,0); }
+.hero .btn-primary:hover { background: var(--accent-dark); box-shadow: var(--shadow-glow); transform: translateY(-2px); }
+.hero .btn-outline { border-color: rgba(255, 255, 255, 0.25); color: #fff; }
+.hero .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-visual { position: relative; aspect-ratio: 1 / 1; max-width: 380px; margin-left: auto; display: flex; align-items: center; justify-content: center; }
+.hero-visual .orbit-svg { width: 100%; height: 100%; filter: drop-shadow(0 0 18px rgba(232, 163, 61, 0.25)); }
+.hero-visual .node { transform-origin: center; animation: pulse-node 4s ease-in-out infinite; }
+.hero-visual .node.n2 { animation-delay: .6s; }
+.hero-visual .node.n3 { animation-delay: 1.2s; }
+.hero-visual .node.n4 { animation-delay: 1.8s; }
+@keyframes pulse-node { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+.hero-visual .path-line { stroke-dasharray: 6 8; animation: dash-flow 12s linear infinite; }
+@keyframes dash-flow { to { stroke-dashoffset: -400; } }
+
+/* Angled divider: a light-colored triangular wedge cut into the bottom of
+   the dark hero, so the transition to the light trust strip isn't a flat
+   horizontal line. */
+.hero-divider { position: absolute; bottom: -1px; left: 0; width: 100%; height: 64px; z-index: 2; }
+.hero-divider svg { width: 100%; height: 100%; display: block; }
+
+/* Trust strip: an infinite horizontal marquee rather than a static row —
+   one continuous, understated motion cue rather than scattered effects. */
+.trust-strip { padding: 1.3rem 0; border-bottom: 1px solid var(--border); overflow: hidden; }
+.trust-strip .container { display: flex; align-items: center; gap: 2rem; }
+.trust-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; flex-shrink: 0; white-space: nowrap; }
+.marquee { flex: 1; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { display: flex; gap: 2.6rem; width: max-content; animation: marquee 22s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track span { color: var(--text-muted); font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; white-space: nowrap; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+
+/* -------------------------------------------------------------------------
+   7. SERVICES — three color-coded cards (teal / amber / navy), each
+   independently expandable via a + icon. Capability lists stay hidden
+   until expanded, which is what keeps this section short by default.
+------------------------------------------------------------------------- */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.1rem; align-items: start; }
+
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  border-top: 3px solid var(--accent-color, var(--secondary));
+  transition: border-color var(--transition), box-shadow var(--transition-slow), transform var(--transition-slow);
+  transform: perspective(800px) rotateX(0deg) rotateY(0deg);
+  will-change: transform;
+}
+.service-card:hover { box-shadow: var(--shadow-md); }
+.service-card.is-open { box-shadow: var(--shadow-glow); border-color: transparent; border-top-color: var(--accent-color, var(--secondary)); }
+
+.service-card[data-accent="teal"] { --accent-color: var(--secondary); }
+.service-card[data-accent="amber"] { --accent-color: var(--accent); }
+.service-card[data-accent="navy"] { --accent-color: var(--primary); }
+.service-card[data-accent="wine"] { --accent-color: var(--wine); }
+
+.service-head { width: 100%; display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; text-align: left; }
+
+/* Hexagon icon container — ties visually to the diamond logo mark without
+   copying it outright, and reads distinctly from the rounded-square icon
+   treatment used everywhere else. */
+.service-card .service-icon {
+  width: 46px; height: 46px;
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  background: var(--accent-color, var(--primary));
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition-slow);
+}
+.service-card:hover .service-icon { transform: rotate(30deg); }
+.service-card .service-icon svg { width: 22px; height: 22px; stroke: #fff; transition: transform var(--transition-slow); }
+.service-card:hover .service-icon svg { transform: rotate(-30deg); }
+
+.service-head-text { flex-grow: 1; }
+.service-head-text h3 { margin-bottom: 0.3rem; }
+.service-head-text p { font-size: 0.9rem; margin: 0; }
+
+.service-head .toggle-icon { color: var(--accent-color, var(--secondary)); margin-top: 0.5rem; }
+
+.service-panel { max-height: 0; overflow: hidden; transition: max-height var(--transition-slow); }
+.service-card.is-open .service-panel { max-height: 480px; }
+
+.service-panel-inner { padding: 0 1.5rem 1.5rem; border-top: 1px solid var(--border); margin: 0 1.5rem; padding-top: 1.2rem; }
+
+.capability-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+.capability-tags span {
+  font-size: 0.82rem;
+  color: var(--primary);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.capability-tags span:hover { border-color: var(--accent-color, var(--secondary)); transform: translateY(-2px); }
+
+.service-cta {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent-color, var(--secondary));
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.service-cta svg { width: 14px; height: 14px; transition: transform var(--transition); }
+.service-cta:hover svg { transform: translateX(4px); }
+
+/* -------------------------------------------------------------------------
+   8. APPROACH — one section, two tabs (Why SRONE / How We Work),
+   so only one set of content is visible at a time.
+------------------------------------------------------------------------- */
+.tab-switch {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem;
+  margin-bottom: 2rem;
+}
+.tab-switch button {
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: background var(--transition), color var(--transition);
+}
+.tab-switch button.active { background: var(--primary); color: #fff; }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fade-in 400ms ease; }
+@keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.why-card {
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.why-card::before {
+  content: attr(data-index);
+  position: absolute; top: 1.1rem; right: 1.3rem;
+  font-family: var(--font-display); font-size: 2rem; font-weight: 600;
+  color: rgba(255, 255, 255, 0.08);
+}
+.why-card h3 { color: #fff; margin-bottom: 0.4rem; font-size: 1.02rem; }
+.why-card p { color: rgba(255, 255, 255, 0.72); font-size: 0.86rem; margin: 0; }
+.why-card.accent { background: var(--secondary); }
+
+.process-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.process-track::before { content: ""; position: absolute; top: 20px; left: 5%; right: 5%; height: 1px; background: var(--border); z-index: 0; }
+.process-step { position: relative; padding-right: 1.2rem; }
+.process-step .step-num {
+  width: 40px; height: 40px;
+  background: var(--surface); border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 600; color: var(--secondary);
+  margin-bottom: 1rem; position: relative; z-index: 1; font-size: 0.82rem;
+  transform: rotate(45deg);
+  transition: transform var(--transition-slow);
+}
+.process-step .step-num span { transform: rotate(-45deg); display: block; }
+.process-step:hover .step-num { transform: rotate(225deg); }
+.process-step:hover .step-num span { transform: rotate(-225deg); }
+.process-step:nth-child(1) .step-num { border-color: var(--secondary); color: var(--secondary); }
+.process-step:nth-child(2) .step-num { border-color: var(--accent); color: var(--accent-dark); }
+.process-step:nth-child(3) .step-num { border-color: var(--primary); color: var(--primary); }
+.process-step:nth-child(4) .step-num { background: var(--primary); border-color: var(--primary); color: #fff; }
+.process-step h3 { margin-bottom: 0.35rem; font-size: 1.02rem; }
+.process-step p { font-size: 0.88rem; }
+
+/* -------------------------------------------------------------------------
+   9. PROOF — one section, two tabs (Results / What Clients Say)
+------------------------------------------------------------------------- */
+.case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1rem; }
+.case-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; display: flex; flex-direction: column; transition: box-shadow var(--transition-slow), transform var(--transition-slow); transform: perspective(800px) rotateX(0deg) rotateY(0deg); will-change: transform; }
+.case-card:hover { box-shadow: var(--shadow-md); }
+.demo-flag {
+  display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
+  color: var(--accent-dark); background: rgba(232, 163, 61, 0.14);
+  padding: 0.18rem 0.5rem; border-radius: 4px; margin-bottom: 0.7rem; width: fit-content;
+}
+.case-card h3 { margin-bottom: 0.5rem; font-size: 1.02rem; }
+.case-card > p { font-size: 0.88rem; margin-bottom: 1.1rem; }
+.case-metric { display: flex; align-items: baseline; gap: 0.55rem; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: auto; }
+.case-metric .metric-num { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; color: var(--secondary); }
+.case-metric .metric-label { font-size: 0.8rem; color: var(--text-muted); }
+
+.testimonial-wrap { position: relative; max-width: 720px; margin: 0 auto; text-align: center; }
+.testimonial-slide { display: none; }
+.testimonial-slide.active { display: block; animation: fade-in 500ms ease; }
+.testimonial-slide blockquote {
+  font-family: var(--font-display); font-size: clamp(1.05rem, 2vw, 1.35rem);
+  color: var(--primary); font-weight: 500; line-height: 1.5; margin-bottom: 1.3rem;
+}
+.testimonial-slide .quote-author { font-weight: 600; color: var(--primary); }
+.testimonial-slide .quote-role { font-size: 0.85rem; color: var(--text-muted); }
+.testimonial-nav { display: flex; justify-content: center; gap: 0.55rem; margin-top: 1.6rem; }
+.testimonial-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: background var(--transition), transform var(--transition); }
+.testimonial-dot.active { background: var(--secondary); transform: scale(1.3); }
+
+/* -------------------------------------------------------------------------
+   10. ABOUT + INDUSTRY CHIPS — merged into one compact section
+------------------------------------------------------------------------- */
+.about-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+.about-copy p { margin-bottom: 1.2rem; }
+.industry-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.industry-chips span {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.86rem; font-weight: 600; color: var(--primary);
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 0.5rem 0.9rem; border-radius: 999px;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.industry-chips span:hover { border-color: var(--secondary); transform: translateY(-2px); }
+.industry-chips svg { width: 15px; height: 15px; stroke: var(--secondary); }
+.chips-label { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.8rem; display: block; }
+
+/* -------------------------------------------------------------------------
+   11. INSIGHTS
+------------------------------------------------------------------------- */
+.insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.1rem; }
+.insight-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 1.3rem; display: flex; gap: 1rem; align-items: flex-start;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.insight-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.insight-icon {
+  width: 42px; height: 42px; border-radius: var(--radius-sm); flex-shrink: 0;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display: flex; align-items: center; justify-content: center;
+}
+.insight-icon svg { width: 20px; height: 20px; stroke: #fff; }
+.insight-tag { font-size: 0.74rem; font-weight: 600; color: var(--secondary); margin-bottom: 0.3rem; display: block; }
+.insight-body h3 { font-size: 0.98rem; margin-bottom: 0.4rem; }
+.insight-body p { font-size: 0.85rem; margin-bottom: 0.6rem; }
+.insight-link { font-size: 0.84rem; font-weight: 600; color: var(--primary); }
+
+/* -------------------------------------------------------------------------
+   12. CONTACT
+------------------------------------------------------------------------- */
+.contact-wrap { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 2.5rem; align-items: start; }
+.contact-info h2 { margin-bottom: 0.8rem; }
+.contact-info p { margin-bottom: 1.5rem; }
+.contact-detail { display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 1.1rem; }
+.contact-detail svg { width: 19px; height: 19px; stroke: var(--secondary); margin-top: 0.15rem; flex-shrink: 0; }
+.contact-detail strong { display: block; font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+.contact-detail span, .contact-detail a { font-weight: 600; color: var(--primary); }
+.social-row { display: flex; gap: 0.7rem; margin-top: 1.4rem; }
+.social-row a {
+  width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition), border-color var(--transition);
+}
+.social-row a:hover { background: var(--primary); border-color: var(--primary); }
+.social-row a:hover svg { stroke: #fff; }
+.social-row svg { width: 17px; height: 17px; stroke: var(--primary); }
+
+.contact-form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { margin-bottom: 1.1rem; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 0.4rem; }
+.form-group .optional-tag { color: var(--text-muted); font-weight: 400; }
+.form-group input[type="text"], .form-group input[type="email"], .form-group input[type="tel"], .form-group textarea {
+  width: 100%; padding: 0.7rem 0.85rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg); color: var(--text); transition: border-color var(--transition), background var(--transition);
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--secondary); background: var(--surface); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group .field-error { display: none; color: var(--error); font-size: 0.8rem; margin-top: 0.35rem; }
+.form-group.invalid input, .form-group.invalid textarea { border-color: var(--error); }
+.form-group.invalid .field-error { display: block; }
+.checkbox-group-label { font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 0.55rem; display: block; }
+.checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+.checkbox-item { display: flex; align-items: center; gap: 0.55rem; padding: 0.6rem 0.75rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); transition: border-color var(--transition); cursor: pointer; }
+.checkbox-item:hover { border-color: var(--secondary); }
+.checkbox-item input { width: 16px; height: 16px; accent-color: var(--secondary); flex-shrink: 0; }
+.checkbox-item label { font-size: 0.87rem; color: var(--text); cursor: pointer; margin: 0; }
+.consent-row { display: flex; align-items: flex-start; gap: 0.65rem; margin: 1.2rem 0 1.4rem; }
+.consent-row input { width: 17px; height: 17px; margin-top: 0.15rem; accent-color: var(--secondary); flex-shrink: 0; }
+.consent-row label { font-size: 0.85rem; color: var(--text-muted); }
+.form-status { display: none; align-items: flex-start; gap: 0.8rem; padding: 1rem 1.1rem; border-radius: var(--radius-sm); margin-top: 1.1rem; }
+.form-status.show { display: flex; animation: fade-in 400ms ease; }
+.form-status.success { background: rgba(31, 122, 108, 0.1); color: var(--success); }
+.form-status.error { background: rgba(180, 67, 46, 0.1); color: var(--error); }
+.form-status svg { width: 19px; height: 19px; flex-shrink: 0; margin-top: 2px; }
+.form-status strong { display: block; margin-bottom: 0.2rem; color: inherit; }
+.form-status p { color: inherit; margin: 0; font-size: 0.87rem; }
+
+/* -------------------------------------------------------------------------
+   14. FOOTER
+------------------------------------------------------------------------- */
+.footer { background: var(--primary); color: rgba(255, 255, 255, 0.7); padding: 3rem 0 1.6rem; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.footer-brand img { height: 36px; margin-bottom: 0.9rem; }
+.footer-brand p { color: rgba(255, 255, 255, 0.55); font-size: 0.88rem; max-width: 30ch; }
+.footer-col h4 { color: #fff; font-size: 0.9rem; margin-bottom: 0.9rem; font-weight: 600; }
+.footer-col ul li { margin-bottom: 0.55rem; }
+.footer-col ul li a { font-size: 0.88rem; transition: color var(--transition); }
+.footer-col ul li a:hover { color: var(--accent); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-top: 1.4rem; font-size: 0.82rem; }
+.footer-legal { display: flex; gap: 1.3rem; }
+.footer-legal a:hover { color: var(--accent); }
+
+.legal-overlay { display: none; position: fixed; inset: 0; background: rgba(11, 27, 43, 0.6); z-index: 2000; align-items: center; justify-content: center; padding: 2rem; }
+.legal-overlay.show { display: flex; }
+.legal-panel { background: var(--surface); border-radius: var(--radius-lg); max-width: 620px; max-height: 80vh; overflow-y: auto; padding: 2.2rem; position: relative; }
+.legal-panel h2 { margin-bottom: 0.9rem; }
+.legal-panel p { margin-bottom: 0.9rem; font-size: 0.92rem; }
+.legal-close { position: absolute; top: 1.3rem; right: 1.3rem; font-size: 1.3rem; color: var(--text-muted); line-height: 1; }
+
+/* -------------------------------------------------------------------------
+   15. SCROLL REVEAL
+------------------------------------------------------------------------- */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 600ms ease, transform 600ms ease; }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* -------------------------------------------------------------------------
+   16. RESPONSIVE
+------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .services-grid, .why-grid, .case-grid, .insights-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-track { grid-template-columns: repeat(2, 1fr); row-gap: 2rem; }
+  .process-track::before { display: none; }
+  .contact-wrap, .about-wrap { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 2rem; }
+}
+
+@media (max-width: 860px) {
+  .hero .container { grid-template-columns: 1fr; }
+  .hero-visual { max-width: 300px; margin: 0 auto; order: -1; }
+  :root { --section-pad: 3.4rem; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-actions .btn-outline { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links.mobile-open {
+    display: flex; flex-direction: column; position: fixed; top: 0; right: 0;
+    height: 100vh; width: 78%; max-width: 300px; background: var(--surface);
+    padding: 6rem 2rem 2rem; gap: 1.4rem; box-shadow: -10px 0 30px rgba(0,0,0,0.12); z-index: 1050;
+  }
+  .nav-actions.mobile-open .btn-outline { display: inline-flex; }
+  .services-grid, .why-grid, .case-grid, .insights-grid { grid-template-columns: 1fr; }
+  .process-track { grid-template-columns: 1fr; }
+  .form-row, .checkbox-grid { grid-template-columns: 1fr; }
+  .trust-strip .container { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .contact-form-card { padding: 1.4rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .insight-card { flex-direction: column; }
+  .tab-switch { width: 100%; }
+  .tab-switch button { flex: 1; }
+}
+
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; align-items: stretch; }
+}
