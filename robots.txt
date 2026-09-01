@@ -1,0 +1,8 @@
+# SR-ONE Consultancy — robots.txt
+# Allows all search engine crawlers to index the entire site.
+# If you move to a custom domain later, update the Sitemap URL below.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://sharvanpandey2.github.io/My-Website/sitemap.xml

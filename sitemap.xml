@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SR-ONE Consultancy — sitemap.xml
+  This is a single-page site, so there's one URL. If pages are added
+  later (e.g. a separate page per service or blog posts), add a new
+  <url> block for each one following the same pattern.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://sharvanpandey2.github.io/My-Website/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

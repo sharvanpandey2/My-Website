@@ -1,22 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SR-ONE Consultancy | Digital Marketing, Technology & Talent Solutions</title>
-<meta name="description" content="SR-ONE Consultancy helps businesses grow through digital marketing, technology solutions, specialized talent, and hospitality revenue & operations consulting for hotels.">
-<meta property="og:title" content="SR-ONE Consultancy | Digital Marketing, Technology & Talent Solutions">
-<meta property="og:description" content="SR-ONE Consultancy helps businesses grow through digital marketing, technology solutions, specialized talent, and hospitality revenue & operations consulting for hotels.">
+<!-- ================================================================
+     SEO — EDIT TITLE / DESCRIPTION / CANONICAL URL HERE
+     If you move the site to a custom domain later, update the
+     canonical + og:url + JSON-LD "url" fields below to match.
+     ================================================================ -->
+<title>SR-ONE Consultancy | Digital Marketing, Tech & Hotel Revenue Management</title>
+<meta name="description" content="SR-ONE Consultancy: digital marketing, technology solutions, IT & business staffing, and hotel revenue management & operations consulting that grows RevPAR and profitability.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://sharvanpandey2.github.io/My-Website/">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp previews) -->
+<meta property="og:title" content="SR-ONE Consultancy | Digital Marketing, Tech & Hotel Revenue Management">
+<meta property="og:description" content="Digital marketing, technology, staffing, and hotel revenue management & operations consulting — one partner for growth.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://sharvanpandey2.github.io/My-Website/">
+<meta property="og:image" content="https://sharvanpandey2.github.io/My-Website/srone-icon.svg">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SR-ONE Consultancy | Digital Marketing, Tech & Hotel Revenue Management">
+<meta name="twitter:description" content="Digital marketing, technology, staffing, and hotel revenue management & operations consulting — one partner for growth.">
+
 <meta name="theme-color" content="#0B1B2B">
-<link rel="icon" type="image/svg+xml" href="assets/srone-icon.svg">
+<link rel="icon" type="image/svg+xml" href="srone-icon.svg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
+
+<!-- ================================================================
+     STRUCTURED DATA (JSON-LD) — helps Google understand this is a
+     consulting business and what services it offers, including the
+     hotel revenue management practice. Edit the URL/email/services
+     here if they change; this does not affect the visible page.
+     ================================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "SR-ONE Consultancy",
+  "url": "https://sharvanpandey2.github.io/My-Website/",
+  "email": "sharvanpandey81@gmail.com",
+  "description": "SR-ONE Consultancy provides digital marketing, technology solutions, manpower & staffing, and hotel revenue management & operations consulting.",
+  "areaServed": "IN",
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Digital Marketing Consulting",
+        "description": "SEO, paid marketing, social media marketing, content strategy, marketing analytics, lead generation and conversion optimization."
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Technology Consulting",
+        "description": "Data & analytics, business intelligence, cloud solutions, automation, AI solutions, software development, and digital transformation."
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Manpower & Staffing Solutions",
+        "description": "IT staffing, contract staffing, permanent recruitment, and technology & digital marketing talent."
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Hotel Revenue Management & Operations Consulting",
+        "description": "Revenue management, RevPAR and ADR optimization, distribution and channel strategy, operations management, cost optimization, guest experience strategy, and hospitality staffing for hotels."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -27,8 +97,8 @@
 <header class="navbar" id="navbar">
   <div class="container">
     <a href="#home" class="nav-logo" aria-label="SR-ONE Consultancy home">
-      <img class="logo-dark" src="assets/srone-logo-dark.svg" alt="SR-ONE Consultancy logo">
-      <img class="logo-light" src="assets/srone-logo.svg" alt="SR-ONE Consultancy logo">
+      <img class="logo-dark" src="srone-logo-dark.svg" alt="SR-ONE Consultancy logo">
+      <img class="logo-light" src="srone-logo.svg" alt="SR-ONE Consultancy logo">
     </a>
 
     <nav class="nav-links" id="navLinks">
@@ -58,7 +128,7 @@
     <div class="hero-copy reveal">
       <span class="pill">Digital · Technology · Talent</span>
       <h1><span class="line">People.</span><span class="line">Technology.</span><span class="line">Growth.</span></h1>
-      <p>SR-ONE Consultancy helps businesses accelerate growth through digital marketing, technology solutions, and the right talent.</p>
+      <p>SR-ONE Consultancy helps businesses accelerate growth through digital marketing, technology solutions, hotel revenue management, and the right talent.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Let's Work Together</a>
         <a href="#services" class="btn btn-outline">Explore Our Services</a>
@@ -236,23 +306,24 @@
           </div>
           <div class="service-head-text">
             <h3>Hospitality Consulting</h3>
-            <p>Revenue management and operations consulting for hotels.</p>
+            <p>Hotel revenue management and operations consulting that grows RevPAR and profitability.</p>
           </div>
           <span class="toggle-icon" aria-hidden="true"></span>
         </button>
         <div class="service-panel">
           <div class="service-panel-inner">
             <div class="capability-tags">
-              <span>Revenue Management</span>
+              <span>Hotel Revenue Management</span>
               <span>RevPAR & ADR Optimization</span>
               <span>Distribution & Channel Strategy</span>
-              <span>Operations Management</span>
+              <span>OTA & Direct Booking Strategy</span>
+              <span>Hotel Operations Management</span>
               <span>Cost & Efficiency Optimization</span>
               <span>Guest Experience Strategy</span>
               <span>Hospitality Staffing</span>
               <span>Property Technology (PMS/RMS)</span>
             </div>
-            <a href="#contact" class="service-cta">Explore Hospitality Consulting
+            <a href="#contact" class="service-cta">Explore Hotel Revenue Management
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </a>
           </div>
@@ -436,7 +507,7 @@
       <div class="about-copy reveal">
         <span class="section-eyebrow">About SR-ONE</span>
         <h2>Expertise across marketing, technology and talent, under one roof</h2>
-        <p>SR-ONE Consultancy brings together expertise across digital marketing, technology, and talent solutions to help businesses solve practical challenges and create sustainable growth. We also run a dedicated hospitality practice, helping hotels grow revenue and run more efficient operations.</p>
+        <p>SR-ONE Consultancy brings together expertise across digital marketing, technology, and talent solutions to help businesses solve practical challenges and create sustainable growth. We also run a dedicated hotel revenue management and hospitality operations consulting practice, helping hotels increase RevPAR, optimize distribution and channel mix, and run more efficient day-to-day operations.</p>
         <p>We work as a connected partner across the areas that most often decide whether a growth plan actually gets delivered.</p>
       </div>
       <div class="reveal">
@@ -668,7 +739,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/srone-logo-dark.svg" alt="SR-ONE Consultancy logo">
+        <img src="srone-logo-dark.svg" alt="SR-ONE Consultancy logo">
         <p>Digital. Technology. Talent.</p>
       </div>
 
