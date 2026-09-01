@@ -1,0 +1,20 @@
+<!--
+  SR-ONE ICON MARK (v2)
+  ======================
+  Concept: a diamond (rotated square) cut into two triangles by a single
+  diagonal seam — one navy, one teal — meeting at a bright node in the
+  center. Two distinct halves, one shape: marketing/technology/talent
+  brought together as a single partner. The seam also reads as a subtle
+  forward-leaning arrow.
+
+  TO CHANGE THE ICON COLORS:
+  Edit the two <path> fill values and the <circle> fill below.
+-->
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SR-ONE icon mark">
+  <g transform="rotate(45 32 32)">
+    <path d="M14 14 H50 V50 Z" fill="#0B1B2B"/>
+    <path d="M14 14 V50 H50 Z" fill="#1F7A6C"/>
+  </g>
+  <line x1="14" y1="50" x2="50" y2="14" stroke="#F7F6F3" stroke-width="1.4" opacity="0.35"/>
+  <circle cx="32" cy="32" r="5.2" fill="#E8A33D"/>
+</svg>

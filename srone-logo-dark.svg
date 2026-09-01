@@ -1,0 +1,21 @@
+<!--
+  SR-ONE HORIZONTAL LOGO — DARK BACKGROUND VERSION
+  ===================================================
+  Use on dark backgrounds (footer, dark hero, dark panels).
+
+  TO EDIT:
+  - "SR" color: fill="#F7F6F3" on the first <text>
+  - "-ONE" color: fill="#E8A33D" on the second <text>
+  - Subtitle color: fill="#B9C0CC" on the third <text>
+  - Icon mark colors: the two triangle fills + node fill in the <g>
+-->
+<svg width="230" height="54" viewBox="0 0 230 54" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SR-ONE Consultancy logo, light version for dark backgrounds">
+  <g transform="translate(2,7) rotate(45 18 18)">
+    <path d="M4 4 H32 V32 Z" fill="#F7F6F3"/>
+    <path d="M4 4 V32 H32 Z" fill="#2C9C89"/>
+  </g>
+  <circle cx="20" cy="25" r="3.4" fill="#E8A33D"/>
+
+  <text x="52" y="31" font-family="'Space Grotesk', 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="0.5" fill="#F7F6F3">SR<tspan fill="#E8A33D">-ONE</tspan></text>
+  <text x="52" y="46" font-family="'Inter', Arial, sans-serif" font-size="9.5" letter-spacing="2" fill="#B9C0CC">CONSULTANCY</text>
+</svg>
