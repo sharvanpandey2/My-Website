@@ -211,8 +211,8 @@ section { padding: var(--section-pad) 0; position: relative; }
   box-shadow: 0 1px 0 var(--border);
 }
 .navbar .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.nav-logo { position: relative; display: inline-block; width: 148px; height: 34px; flex-shrink: 0; }
-.nav-logo img { height: 34px; width: 148px; max-width: none; position: absolute; top: 0; left: 0; transition: opacity var(--transition); }
+.nav-logo { position: relative; display: inline-block; width: 200px; height: 50px; flex-shrink: 0; }
+.nav-logo img { height: 50px; width: 200px; max-width: none; position: absolute; top: 0; left: 0; transition: opacity var(--transition); }
 .nav-logo .logo-dark { opacity: 1; }   /* light-on-dark wordmark, shown over the dark hero */
 .nav-logo .logo-light { opacity: 0; } /* navy wordmark, shown once the bar turns light */
 .navbar.scrolled .nav-logo .logo-dark { opacity: 0; }
